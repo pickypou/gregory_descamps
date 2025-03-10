@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: Icon(
               Icons.menu,
-              color: theme.colorScheme.surface,
+              color: theme.colorScheme.primary,
             ),
           );
         },
@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     } else {
       return context.canPop()
           ? IconButton(
-        icon:  Icon(Icons.arrow_back, color:theme.colorScheme.surface),
+        icon:  Icon(Icons.arrow_back, color:theme.colorScheme.primary),
         onPressed: () => context.pop(),
       )
           : Container(); // Retourne un widget vide si on ne peut pas revenir en arrière
@@ -48,7 +48,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> generateNavActions(BuildContext context) {
     final List<Map<String, String>> navItems = [
       {'label': 'Accueil', 'route': '/'},
+      {'label' : 'Mes réalisations', 'route' : '/portfolio'},
       {'label' : 'Contact', 'route' : '/contact'},
+
 
 
 
@@ -89,7 +91,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           )),
         if (onNavigate != null)
           IconButton(
-            icon:  Icon(Icons.new_releases, color: theme.colorScheme.surface),
+            icon:  Icon(Icons.new_releases, color: theme.colorScheme.primary),
             onPressed: onNavigate!,
           ),
         if (isWideScreen) ...generateNavActions(context),
@@ -105,6 +107,7 @@ class CustomDrawer extends StatelessWidget {
   List<Widget> generateDrawerItems(BuildContext context) {
     final List<Map<String, String>> drawerItems = [
       {'label': 'Accueil', 'route': '/'},
+      {'label' : 'Mes réalisations', 'route' : '/portfolio'},
       {'label' : 'Contact', 'route' : '/contact'},
 
 
