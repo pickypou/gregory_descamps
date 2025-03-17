@@ -1,0 +1,53 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domaine/entity/avis_clients.dart';
+import 'avis_clients_event.dart';
+import 'avis_clients_interactor.dart';
+import 'avis_clients_state.dart';
+
+class AvisClientsBloc extends Bloc<AvisClientsEvent, AvisClientsState> {
+  final AvisClientsInteractor interactor;
+
+  AvisClientsBloc(this.interactor) : super(AvisClientsInitial()) {
+    // Gestion de l'événement pour charger les avis
+    on<LoadAvisClientsEvent>((event, emit) async {
+      emit(AvisClientsLoadingState());
+      try {
+        final avisClients = await interactor.fetchAvisClientsData();
+        emit(AvisClientsLoadedState(avisClientsData: avisClients.toList()));
+      } catch (e) {
+        emit(AvisClientsErrorState(message: 'Erreur lors du chargement : $e'));
+      }
+    });
+
+    // Gestion de l'événement pour ajouter un avis
+    on<AddAvisClientEvent>((event, emit) async {
+      try {
+        emit(AvisClientsLoadingState());
+
+        // Crée l'avis client
+        final avisClient = AvisClients(
+          id: event.id,
+          firstname: event.firstname,
+          text: event.text,
+          publishDate: event.publishDate,
+        );
+
+        // Appelle l'interactor pour ajouter l'avis
+        await interactor.addAvisClients(avisClient);
+
+        // Recharge les avis clients
+        final updatedAvisClients = await interactor.fetchAvisClientsData();
+
+        // Émet un état de succès
+        emit(
+          AvisClientsLoadedState(avisClientsData: updatedAvisClients.toList()),
+        );
+
+        // Navigation après succès
+      } catch (e) {
+        emit(AvisClientsErrorState(message: 'Erreur lors de l\'ajout : $e'));
+      }
+    });
+  }
+}
