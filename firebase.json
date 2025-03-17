@@ -1,16 +1,26 @@
 {
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gregory-descamps",
+          "configurations": {
+            "web": "1:189608787196:web:84ca3e3bf70d014978eb79"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "y",
+    "indexes": "firestore.indexes.json"
+  },
   "hosting": {
     "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }

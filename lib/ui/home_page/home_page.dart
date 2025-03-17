@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/logo.png'),
+                Image.asset('assets/images/logos/logo-transparent.png'),
                 Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -61,7 +61,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/logo.png'),
+                Image.asset('assets/images/logos/logo-transparent.png',
+                fit: BoxFit.cover,),
+                const SizedBox(height: 35,),
                 Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -78,7 +80,7 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(45),
                   child: Text(
-                    "Fort de dix années d'expérience en tant qu'auto-entrepreneur dans le domaine de la rénovation de bâtiments, je mets mon savoir-faire et mon expertise à votre service pour concrétiser tous vos projets de transformation. Que ce soit pour rénover une pièce, créer une extension ou optimiser 'aménagement de votre espace, je vous accompagne à chaque étape, en vous proposant des solutions adaptées à vos besoins et à votre budget. Spécialisé également dans l'isolation thermique et acoustique, j'interviens pour améliorer le confort de votre habitation tout en réduisant votre consommation énergétique. Grâce à l'utilisation de matériaux performants et durables, chaque projet est réalisé avec soin et souci du détail. Mon objectif est de vous offrir un travail de qualité, respectueux des délais et conforme à vos attentes. N'hésitez pas à me contacter pour discuter de votre projet, obtenir des conseils ou demander un devis personnalisé. Ensemble, donnons vie à vos idées et transformons votre intérieur selon vos envies !",
+                    "Fort de quinze années d'expérience en tant qu'auto-entrepreneur dans le domaine de la rénovation de bâtiments, je mets mon savoir-faire et mon expertise à votre service pour concrétiser tous vos projets de transformation. Que ce soit pour rénover une pièce, créer une extension ou optimiser 'aménagement de votre espace, je vous accompagne à chaque étape, en vous proposant des solutions adaptées à vos besoins et à votre budget. Spécialisé également dans l'isolation thermique et acoustique, j'interviens pour améliorer le confort de votre habitation tout en réduisant votre consommation énergétique. Grâce à l'utilisation de matériaux performants et durables, chaque projet est réalisé avec soin et souci du détail. Mon objectif est de vous offrir un travail de qualité, respectueux des délais et conforme à vos attentes. N'hésitez pas à me contacter pour discuter de votre projet, obtenir des conseils ou demander un devis personnalisé. Ensemble, donnons vie à vos idées et transformons votre intérieur selon vos envies !",
                     style: textStyleText(context),
                   ),
                 ),

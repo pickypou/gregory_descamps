@@ -21,7 +21,7 @@ class FormContactState extends State<FormContact> {
     if (_formKey.currentState!.validate()) {
       final Uri emailUri = Uri(
         scheme: 'mailto',
-        path: 'gregdescamps46@gmail.com',
+        path:'gregdescamps46@gmail.com',
         query: 'subject=Demande de contact&body=Nom: ${_nameController.text}\n'
             'Prénom: ${_surnameController.text}\n'
             'Email: ${_emailController.text}\n\n'

@@ -1,13 +1,16 @@
+
+
 import 'package:get_it/get_it.dart';
+import 'package:gregory_descamps/core/di/di.config.dart';
 import 'package:injectable/injectable.dart';
 
-import 'di.config.dart';
-
-final GetIt getIt = GetIt.instance;
+final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'init',
-  preferRelativeImports: true,
-  asExtension: false,
+  initializerName: 'init', // default
+  preferRelativeImports: true, // default
+  asExtension: true, // default
 )
-Future<void> configureDependencies() async => init(getIt);
+void configureDependencies() {
+  getIt.init(); // Initialisation générée par Injectable
+}

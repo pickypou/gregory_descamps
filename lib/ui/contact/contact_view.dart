@@ -105,7 +105,8 @@ class ContactView extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 70),
+                const SizedBox(height: 100),
+
                 Footer(),
               ],
             ),

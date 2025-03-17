@@ -34,5 +34,25 @@
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCLayHC_KtyHdiWWbHXeY5Pe82swYc4dX8',
+    appId: '1:189608787196:web:84ca3e3bf70d014978eb79',
+    messagingSenderId: '189608787196',
+    projectId: 'gregory-descamps',
+    authDomain: 'gregory-descamps.firebaseapp.com',
+    storageBucket: 'gregory-descamps.firebasestorage.app',
+    };
+
+    // Initialiser Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  </script>
+
 </body>
 </html>

@@ -7,8 +7,8 @@ import '../common/footer.dart';
 
 class Portfolio extends StatelessWidget {
   final List<List<String>> imageLists = [
-    ["assets/images/chantiers/img_1.jpg", "assets/images/chantiers/img_2.jpg", "assets/images/chantiers/img_3.jpg", "assets/images/chantiers/img_4.jpg"],
-    ["assets/images/chantiers/img_5.jpg", "assets/images/chantiers/img_6.jpg", "assets/images/chantiers/img_7.jpg", "assets/images/chantiers/img_8.jpg"],
+    ["assets/images/chantiers/logo_1.png", "assets/images/chantiers/logo_2.png", "assets/images/chantiers/logo_3.png"],
+    ["assets/images/chantiers/logo_4.png", "assets/images/chantiers/logo_5.png"],
   ];
 
   Portfolio({super.key});

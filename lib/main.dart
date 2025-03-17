@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gregory_descamps/theme.dart';
@@ -5,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/di/di.dart';
 import 'core/router/router_config.dart';
+import 'firebase_options.dart';
 
 Future<String> getDirectoryPath() async {
   if (kIsWeb) {
@@ -16,8 +18,14 @@ Future<String> getDirectoryPath() async {
   }
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // ⚠️ Ajout des options Firebase
+  );
   configureDependencies();
+
   runApp(const MyApp());
 }
 
