@@ -28,6 +28,7 @@ class AvisClientsPage extends StatelessWidget {
         }
 
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          debugPrint('⚠ Aucun avis trouvé');
           return const Center(child: Text('Aucun avis disponible'));
         }
 

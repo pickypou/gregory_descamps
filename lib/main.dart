@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +22,18 @@ Future<String> getDirectoryPath() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialisation de Firebase avec la configuration web
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // ⚠️ Ajout des options Firebase
+    options: DefaultFirebaseOptions.currentPlatform, // Utilise la config Firebase pour Web
   );
+
+  // Configure les dépendances (ex. DI)
   configureDependencies();
 
+  // Lance l'application
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

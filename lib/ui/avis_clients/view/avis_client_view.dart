@@ -28,7 +28,7 @@ class _AvisClientsViewState extends State<AvisClientsView> {
     double paddingHorizontal = isSmallScreen ? 20 : 90;
     double imageOpacity = isSmallScreen ? 0.4 : 0.2;
     double carouselHeight = isSmallScreen ? 450 : 300;
-
+    debugPrint('Nombre d\'avis dans le carousel : ${widget.avis.length}');
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isSmallScreen ? 40 : 55),
       child: Stack(
@@ -122,7 +122,7 @@ class _AvisClientsViewState extends State<AvisClientsView> {
                         }).toList(),
                     options: CarouselOptions(
                       height: carouselHeight,
-                      autoPlay: true,
+                      autoPlay: false,
                       autoPlayInterval: const Duration(seconds: 15),
                       enlargeCenterPage: true,
                       viewportFraction: 0.8,

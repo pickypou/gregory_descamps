@@ -14,11 +14,21 @@ class AvisClientsRepositoryImpl extends AvisClientsRepository {
   @override
   Stream<Iterable<AvisClients>> getAvisClientsStream() {
     return _firestore.collection('avis_clients').snapshots().map(
-          (querySnapshot) => querySnapshot.docs
-          .map((doc) => AvisClients.fromMap(doc.data() as Map<String, dynamic>?, doc.id))
-          .toList(),
+          (querySnapshot) {
+        print('🔥 Nombre d\'avis récupérés: ${querySnapshot.docs.length}');
+        return querySnapshot.docs.map((doc) {
+          final data = doc.data();
+          if (data == null) {
+            print('❌ Document vide : ${doc.id}');
+            return null; // Ignore les documents vides
+          }
+          print('✅ Avis récupéré: ${data}');
+          return AvisClients.fromMap(data as Map<String, dynamic>, doc.id);
+        }).whereType<AvisClients>().toList();
+      },
     );
   }
+
 
   @override
   Future<Map<String, dynamic>> getById(String avisClientsId) async {
@@ -54,7 +64,7 @@ class AvisClientsRepositoryImpl extends AvisClientsRepository {
   Future<void> updateField(
       String avisClientsId, String fieldName, String newValue) async {
     await _firestore
-        .collection('avis_client')
+        .collection('avis_clients')
         .doc(avisClientsId)
         .update({fieldName: newValue});
   }
