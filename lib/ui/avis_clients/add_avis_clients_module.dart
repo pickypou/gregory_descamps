@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gregory_descamps/ui/avis_clients/avis_client_page.dart';
+import 'package:gregory_descamps/ui/avis_clients/view/add_avis_clients.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/di/di.dart';
@@ -10,10 +10,10 @@ import 'avis_clients_bloc.dart';
 import 'avis_clients_interactor.dart';
 
 @singleton
-class AvisClientsModule implements UIModule {
+class AddAvisClientsModule implements UIModule {
   final AppRouter _appRouter;
 
-  AvisClientsModule(this._appRouter);
+  AddAvisClientsModule(this._appRouter);
 
   @override
   void configure() {
@@ -24,7 +24,7 @@ class AvisClientsModule implements UIModule {
   List<RouteBase> getRoutes() {
     return [
       GoRoute(
-        path: '/AvisClients',
+        path: '/addAvisClients',
         pageBuilder: (context, state) {
           return MaterialPage(child: _buildAddAvisClients());
         },
@@ -44,7 +44,7 @@ class AvisClientsModule implements UIModule {
     return BlocProvider<AvisClientsBloc>(
       create:
           (context) => AvisClientsBloc(interactor), // Correction de la variable
-      child: AvisClientsPage(),
+      child: AddAvisClientsView(),
     );
   }
 }

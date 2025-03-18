@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gregory_descamps/core/di/di.dart';
+import 'package:gregory_descamps/ui/avis_clients/add_avis_clients_module.dart';
 import 'package:gregory_descamps/ui/avis_clients_list/avis_clients_list_module.dart';
 import 'package:gregory_descamps/ui/contact/contact_module.dart';
 import 'package:gregory_descamps/ui/home_page/home_page_module.dart';
@@ -18,6 +19,7 @@ class AppRouterConfig {
       ...getIt<PortfolioModule>().getRoutes(),
       ...getIt<AvisClientsModule>().getRoutes(),
       ...getIt<AvisClientsListModule>().getRoutes(),
+      ...getIt<AddAvisClientsModule>().getRoutes(),
     ],
     errorBuilder: (context, state) => const ErrorPage(),
   );

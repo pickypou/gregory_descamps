@@ -17,6 +17,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import '../../data/repository/avis_clients_repository.dart' as _i990;
 import '../../data/repository/avis_clients_repository_impl.dart' as _i552;
 import '../../domaine/usecases/fetch_avis_clients_data_usecase.dart' as _i122;
+import '../../ui/avis_clients/add_avis_clients_module.dart' as _i81;
 import '../../ui/avis_clients/avis_clients_interactor.dart' as _i606;
 import '../../ui/avis_clients/avis_clients_module.dart' as _i712;
 import '../../ui/avis_clients_list/avis_clients_list_module.dart' as _i58;
@@ -37,10 +38,10 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final diModule = _$DiModule();
+    gh.singleton<_i573.AppRouter>(() => _i573.AppRouter());
     gh.singleton<_i59.FirebaseAuth>(() => diModule.firebaseAuth);
     gh.singleton<_i974.FirebaseFirestore>(() => diModule.firebaseFireStore);
     gh.singleton<_i718.AppRouterConfig>(() => _i718.AppRouterConfig());
-    gh.singleton<_i573.AppRouter>(() => _i573.AppRouter());
     gh.lazySingleton<_i893.AuthService>(
       () => _i893.AuthService(gh<_i59.FirebaseAuth>()),
     );
@@ -53,9 +54,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i122.FetchAvisClientDataUseCase>(
       () => _i122.FetchAvisClientDataUseCase(gh<_i990.AvisClientsRepository>()),
     );
-    gh.singleton<_i712.AvisClientsModule>(
-      () => _i712.AvisClientsModule(gh<_i573.AppRouter>()),
-    );
     gh.singleton<_i58.AvisClientsListModule>(
       () => _i58.AvisClientsListModule(gh<_i573.AppRouter>()),
     );
@@ -67,6 +65,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i982.PortfolioModule>(
       () => _i982.PortfolioModule(gh<_i573.AppRouter>()),
+    );
+    gh.singleton<_i712.AvisClientsModule>(
+      () => _i712.AvisClientsModule(gh<_i573.AppRouter>()),
+    );
+    gh.singleton<_i81.AddAvisClientsModule>(
+      () => _i81.AddAvisClientsModule(gh<_i573.AppRouter>()),
     );
     gh.singleton<_i606.AvisClientsInteractor>(
       () => _i606.AvisClientsInteractor(
