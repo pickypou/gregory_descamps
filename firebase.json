@@ -12,10 +12,11 @@
     }
   },
   "firestore": {
-    "rules": "y",
+    "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "gregory-descamps-57d9a",
     "public": "build/web",
     "ignore": [
       "firebase.json",

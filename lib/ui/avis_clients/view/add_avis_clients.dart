@@ -50,9 +50,9 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
         return Scaffold(
           appBar: const CustomAppBar(title: ''),
           drawer:
-              MediaQuery.of(context).size.width <= 750
-                  ? const CustomDrawer()
-                  : null,
+          MediaQuery.of(context).size.width <= 750
+              ? const CustomDrawer()
+              : null,
           body: _buildBody(context, state),
         );
       },
@@ -63,47 +63,60 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
     if (state is AvisClientsLoadingState) {
       return const Center(child: CircularProgressIndicator());
     } else {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 35),
-              Center(
-                child: Text(
-                  'Je poste mon avis',
-                  style: titleStyleMedium(context),
+      return Scaffold(
+        body: Column(
+          children: [
+            // Contenu principal de la page
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 35),
+                    Center(
+                      child: Text(
+                        'Je poste mon avis',
+                        style: titleStyleMedium(context),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    CustomTextField(
+                      labelText: 'Titre',
+                      controller: categoriesController,
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 25),
+                    CustomTextField(
+                      labelText: 'Nom et Prénom',
+                      controller: firstnameController,
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 25),
+                    CustomTextField(
+                      labelText: 'Mon commentaire',
+                      controller: textController,
+                      maxLines: 5,
+                    ),
+                    const SizedBox(height: 80),
+                    CustomButton(
+                      onPressed: _submitAvis,
+                      label: 'Je poste mon avis',
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 40),
-              CustomTextField(
-                labelText: 'Titre',
-                controller: categoriesController,
-                maxLines: 1,
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                labelText: 'Nom et Prénom',
-                controller: firstnameController,
-                maxLines: 1,
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                labelText: 'Mon commentaire',
-                controller: textController,
-                maxLines: 5,
-              ),
-              const SizedBox(height: 40),
-              CustomButton(onPressed: _submitAvis, label: 'Je poste mon avis'),
-              const SizedBox(height: 55),
-              Footer(),
-            ],
-          ),
+            ),
+            // Footer est toujours en bas, sans possibilité de scroll
+           // Footer(),
+          ],
         ),
+        bottomNavigationBar: Footer(),
       );
     }
   }
+
+
 
   void _submitAvis() {
     final DateTime now = DateTime.now();

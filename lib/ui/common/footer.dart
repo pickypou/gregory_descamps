@@ -28,7 +28,7 @@ class Footer extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "N° de siret 59s2",
+                  "N° de siret 75073281000015",
                   style: textStyleTextAccueil(context),
                   textAlign: TextAlign.center,
                 ),
