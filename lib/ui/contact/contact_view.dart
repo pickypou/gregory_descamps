@@ -81,14 +81,17 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset('assets/images/logo.png'),
+                          Image.asset('assets/images/logos/logo.png'),
                           const SizedBox(height: 10),
                           Text(
-                            'Mettre ton adresse ',
+                            '465 route de puy Clavel',
                             style: textStyleText(context),
                           ),
+
                           const SizedBox(height: 10),
-                          Text('', style: textStyleText(context)),
+                          Text('46160 Grealou', style: textStyleText(context)),
+                          const SizedBox(height: 25),
+                          Image.asset("assets/images/vues_maps.png"),
                         ],
                       ),
                     ),

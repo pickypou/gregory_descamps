@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../theme.dart';
+import 'clickable_image.dart';
 
 class Footer extends StatelessWidget {
   final double? fontSize;
@@ -7,32 +9,42 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70, // ✅ On fixe une hauteur pour éviter qu'il prenne trop de place
-      padding: const EdgeInsets.symmetric(vertical: 10.0), // ✅ Ajustement du padding
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: 56.0), // Hauteur maximale fixée
       child: Column(
-        mainAxisSize: MainAxisSize.min, // ✅ Évite l'expansion inutile
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Divider(
-            color: theme.colorScheme.primary,
-            thickness: 1,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "© 2025 Grégory DESCAMPS",
-                  style: textStyleText(context),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  "N° de siret 75073281000015",
-                  style: textStyleTextAccueil(context),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+          Divider(color: theme.colorScheme.primary, thickness: 1),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ClickableImage(
+                    imagePath: 'assets/images/logos/logo.png',
+                    route: "/admin",
+                  ),
+
+                  Flexible(
+                    child: Text(
+                      "© 2025 Grégory DESCAMPS tous droits réservés",
+                      style: textStyleText(context),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Flexible(
+                    child: Text(
+                      "N° de Siret : 75073281000015",
+                      style: textStyleTextAccueil(context),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -40,4 +52,3 @@ class Footer extends StatelessWidget {
     );
   }
 }
-
