@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../theme.dart';
 import '../common/custom_appbar.dart';
 import '../common/footer.dart';
@@ -26,10 +27,9 @@ class ContactView extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text("Nous contacter", style: titleStyleMedium(context)),
 
-                Image.asset('assets/images/logo.png'),
+                Image.asset('assets/images/logos/logo.png'),
 
                 SizedBox(width: size.width, child: FormContact()),
-
 
                 const SizedBox(height: 10),
                 Text(
@@ -43,7 +43,6 @@ class ContactView extends StatelessWidget {
                   style: textStyleText(context),
                   textAlign: TextAlign.center,
                 ),
-
 
                 const SizedBox(height: 55),
                 Footer(),
@@ -66,7 +65,10 @@ class ContactView extends StatelessWidget {
                 const SizedBox(height: 15),
                 Align(
                   alignment: Alignment.center,
-                  child:  Text("Nous contacter", style: titleStyleMedium(context)),
+                  child: Text(
+                    "Nous contacter",
+                    style: titleStyleMedium(context),
+                  ),
                 ),
 
                 const SizedBox(height: 10),
@@ -79,7 +81,6 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           Image.asset('assets/images/logo.png'),
                           const SizedBox(height: 10),
                           Text(
@@ -87,21 +88,13 @@ class ContactView extends StatelessWidget {
                             style: textStyleText(context),
                           ),
                           const SizedBox(height: 10),
-                          Text(
-                            '',
-                            style: textStyleText(context),
-                          ),
+                          Text('', style: textStyleText(context)),
                         ],
                       ),
                     ),
                     const SizedBox(width: 50),
                     // Section droite : Formulaire
-                    Expanded(
-                      flex: 2,
-
-                      child:
-                      FormContact(),
-                    ),
+                    Expanded(flex: 2, child: FormContact()),
                   ],
                 ),
 

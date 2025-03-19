@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     Size size = MediaQuery.sizeOf(context);
     double calculatedFontSize =
-        fontSize ??  (size.width > 749 ? size.width / 60 : 20);
+        fontSize ?? (size.width > 749 ? size.width / 60 : 20);
 
     // Calculez la largeur souhaitée en fonction de la largeur de l'écran.
     double buttonWidth = screenWidth * 0.8;
@@ -35,49 +35,52 @@ class CustomButton extends StatelessWidget {
             padding: WidgetStateProperty.all<EdgeInsets>(
               const EdgeInsets.symmetric(vertical: 15),
             ),
-            backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                  (states) {
-                if (states.contains(WidgetState.pressed)) {
-                  return theme.colorScheme.secondary; // Fond quand pressé
-                }
-                return theme.colorScheme.primary; // Fond par défaut
-              },
-            ),
-            shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>(
-                  (states) {
-                return RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  side: BorderSide(
-                    color: theme.colorScheme.onPrimary,
-                    width: states.contains(WidgetState.pressed) ? 3.0 : 3.0, // Bordure dynamique
-                  ),
-                );
-              },
-            ),
+            backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+              if (states.contains(WidgetState.pressed)) {
+                return theme.colorScheme.onSurface; // Fond quand pressé
+              }
+              return theme.colorScheme.onSurface; // Fond par défaut
+            }),
+            shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>((
+              states,
+            ) {
+              return RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+                side: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width:
+                      states.contains(WidgetState.pressed)
+                          ? 3.0
+                          : 3.0, // Bordure dynamique
+                ),
+              );
+            }),
           ),
-          onPressed: onPressed ?? () {}, // Fonction par défaut si `onPressed` est null
+          onPressed:
+              onPressed ?? () {}, // Fonction par défaut si `onPressed` est null
           child: Builder(
             builder: (context) {
               // Dynamique selon l'état pressé
-              final isPressed = ElevatedButtonTheme.of(context)
-                  .style
-                  ?.backgroundColor
-                  ?.resolve({WidgetState.pressed}) !=
+              final isPressed =
+                  ElevatedButtonTheme.of(
+                    context,
+                  ).style?.backgroundColor?.resolve({WidgetState.pressed}) !=
                   null;
               return Text(
                 label,
-                style: TextStyle(fontSize: calculatedFontSize,
-                  color: isPressed
-                      ? theme.colorScheme.onPrimary // Texte quand pressé
-                      : theme.colorScheme.secondary, // Texte par défaut
+                style: TextStyle(
+                  fontSize: calculatedFontSize,
+                  color:
+                      isPressed
+                          ? theme
+                              .colorScheme
+                              .primary // Texte quand pressé
+                          : theme.colorScheme.secondary, // Texte par défaut
                 ),
               );
             },
           ),
         ),
-
-
-
       ),
     );
   }

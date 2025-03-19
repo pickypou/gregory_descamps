@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
+import 'package:gregory_descamps/theme.dart';
+import 'package:gregory_descamps/ui/common/footer.dart';
 
-import '../../../theme.dart';
+import '../../common/custom_appbar.dart';
 import '../../common/custom_buttom.dart';
 import '../../common/custom_text_field.dart';
 import '../avis_clients_bloc.dart';
@@ -38,34 +39,20 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Avis ajouté avec succès')),
           );
-          // Utilisation de GoRouter pour rediriger vers la HomePage
-          context.go('/');
+          context.go('/'); // Redirection après succès
         } else if (state is AvisClientsErrorState) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
-
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: GestureDetector(
-              onTap: () {
-                context.go('/'); // Navigue vers la route '/'
-              },
-              child: Text(
-                'Accueil',
-                style: TextStyle(
-                  color:
-                      theme
-                          .colorScheme
-                          .onPrimary, // Assurez-vous que le texte est visible
-                ),
-              ),
-            ),
-          ),
-
+          appBar: const CustomAppBar(title: ''),
+          drawer:
+              MediaQuery.of(context).size.width <= 750
+                  ? const CustomDrawer()
+                  : null,
           body: _buildBody(context, state),
         );
       },
@@ -82,7 +69,13 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(child: Text('Je poste mon avis')),
+              const SizedBox(height: 35),
+              Center(
+                child: Text(
+                  'Je poste mon avis',
+                  style: titleStyleMedium(context),
+                ),
+              ),
               const SizedBox(height: 40),
               CustomTextField(
                 labelText: 'Titre',
@@ -101,8 +94,10 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
                 controller: textController,
                 maxLines: 5,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
               CustomButton(onPressed: _submitAvis, label: 'Je poste mon avis'),
+              const SizedBox(height: 55),
+              Footer(),
             ],
           ),
         ),
@@ -112,7 +107,15 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
 
   void _submitAvis() {
     final DateTime now = DateTime.now();
-    final String formattedDate = DateFormat('dd/MM/yyyy').format(now);
+
+    if (categoriesController.text.isEmpty ||
+        firstnameController.text.isEmpty ||
+        textController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Veuillez remplir tous les champs')),
+      );
+      return;
+    }
 
     context.read<AvisClientsBloc>().add(
       AddAvisClientEvent(
@@ -122,12 +125,11 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
         publishDate: now,
       ),
     );
-    // Redirection après l'ajout de l'avis
+
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('Avis ajouté avec succès')));
 
-    // Redirection vers la HomePage avec GoRouter
-    context.go('/');
+    context.go('/'); // Redirection après ajout
   }
 }

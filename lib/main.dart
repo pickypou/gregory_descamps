@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,9 @@ void main() async {
 
   // Initialisation de Firebase avec la configuration web
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // Utilise la config Firebase pour Web
+    options:
+        DefaultFirebaseOptions
+            .currentPlatform, // Utilise la config Firebase pour Web
   );
 
   // Configure les dépendances (ex. DI)
@@ -33,7 +34,6 @@ void main() async {
   // Lance l'application
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
       title: 'Gregory_DESCAMPS',
       theme: theme,
       routerConfig: appRouterConfig.router,
-
     );
   }
 }

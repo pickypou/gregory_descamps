@@ -23,14 +23,11 @@ class _AvisClientsViewState extends State<AvisClientsView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     bool isSmallScreen = size.width < 749;
-    debugPrint('📢 Avis reçus dans AvisClientsView : ${widget.avis.length}');
-
 
     // ** Styles dynamiques **
     double paddingHorizontal = isSmallScreen ? 20 : 90;
     double imageOpacity = isSmallScreen ? 0.4 : 0.2;
     double carouselHeight = isSmallScreen ? 450 : 300;
-    debugPrint('Nombre d\'avis dans le carousel : ${widget.avis.length}');
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isSmallScreen ? 40 : 55),
       child: Stack(

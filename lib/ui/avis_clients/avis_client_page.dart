@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gregory_descamps/theme.dart';
 import 'package:gregory_descamps/ui/avis_clients/view/avis_client_view.dart';
+import 'package:gregory_descamps/ui/common/footer.dart';
 
 import '../../domaine/entity/avis_clients.dart';
+import '../common/custom_appbar.dart';
 import '../common/custom_buttom.dart';
 
 class AvisClientsPage extends StatelessWidget {
@@ -43,23 +46,29 @@ class AvisClientsPage extends StatelessWidget {
                 )
                 .toList();
 
-        // Log pour vérifier les données
-        debugPrint('Nombre d\'avis : ${avis.length}');
-        for (var avisItem in avis) {
-          debugPrint('Avis : ${avisItem.text}');
-        }
-
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Les clients nous donnent leurs avis'),
-            AvisClientsView(avis: avis),
-            const SizedBox(height: 35),
-            CustomButton(
-              label: 'Je donne mon avis',
-              onPressed: () => GoRouter.of(context).go('/addAvisClients'),
-            ),
-          ],
+        return Scaffold(
+          appBar: const CustomAppBar(title: ''),
+          drawer:
+              MediaQuery.of(context).size.width <= 750
+                  ? const CustomDrawer()
+                  : null,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Les clients nous donnent leurs avis',
+                style: titleStyleMedium(context),
+              ),
+              AvisClientsView(avis: avis),
+              const SizedBox(height: 35),
+              CustomButton(
+                label: 'Je donne mon avis',
+                onPressed: () => GoRouter.of(context).go('/addAvisClients'),
+              ),
+              const SizedBox(height: 55),
+              Footer(),
+            ],
+          ),
         );
       },
     );
