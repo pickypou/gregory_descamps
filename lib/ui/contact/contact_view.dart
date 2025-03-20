@@ -79,10 +79,10 @@ class ContactView extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/logos/logo.png'),
-                          const SizedBox(height: 10),
+                          Image.asset('assets/images/logos/logo-transparent.png'),
+                          const SizedBox(height: 35),
                           Text(
                             '465 route de puy Clavel',
                             style: textStyleText(context),
@@ -90,8 +90,8 @@ class ContactView extends StatelessWidget {
 
                           const SizedBox(height: 10),
                           Text('46160 Grealou', style: textStyleText(context)),
-                          const SizedBox(height: 25),
-                          Image.asset("assets/images/vues_maps.png"),
+                          const SizedBox(height: 35),
+                          Image.asset("assets/images/vue_maps.png", fit: BoxFit.contain, width: size.width *0.2,),
                         ],
                       ),
                     ),
@@ -103,11 +103,12 @@ class ContactView extends StatelessWidget {
 
                 const SizedBox(height: 100),
 
-                Footer(),
+                //Footer(),
               ],
             ),
           ),
         ),
+        bottomNavigationBar: Footer(),
       );
     }
   }

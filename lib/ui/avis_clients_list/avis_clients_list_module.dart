@@ -23,7 +23,7 @@ class AvisClientsListModule implements UIModule {
   List<RouteBase> getRoutes() {
     return [
       GoRoute(
-        path: '/avisClients',
+        path: '/remove_avis_clients',
         pageBuilder: (context, state) {
           return MaterialPage(child: _buildAvisClientsList());
         },

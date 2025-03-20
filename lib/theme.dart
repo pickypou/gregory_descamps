@@ -15,7 +15,7 @@ ThemeData theme = ThemeData(
     onSecondary: Color(0xFF16324F),
     error: Colors.transparent,
     onError: Color(0xFFFFFFFF),
-    surface: Color(  0xFFE88D67),
+    surface: Colors.transparent,
     onSurface: Color(0xFF3E92CC),
   ),
 );

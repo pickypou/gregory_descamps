@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
     // Calculez la largeur souhaitée en fonction de la largeur de l'écran.
     double buttonWidth = screenWidth * 0.8;
     if (screenWidth > 500) {
-      buttonWidth = 400.0; // Comme pour le CustomTextField
+      buttonWidth = 300.0; // Comme pour le CustomTextField
     }
 
     return Center(
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           style: ButtonStyle(
             padding: WidgetStateProperty.all<EdgeInsets>(
-              const EdgeInsets.symmetric(vertical: 15),
+              const EdgeInsets.symmetric(vertical: 11),
             ),
             backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
               if (states.contains(WidgetState.pressed)) {

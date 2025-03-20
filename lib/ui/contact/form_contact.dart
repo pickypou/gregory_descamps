@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gregory_descamps/ui/common/custom_buttom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../theme.dart';
@@ -94,19 +95,10 @@ class FormContactState extends State<FormContact> {
                       maxLines: 5,
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton(
+                    CustomButton(
                       onPressed: _sendEmail,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:  theme.colorScheme.secondary, // Couleur de fond gris
-                        foregroundColor: theme.colorScheme.surface, // Couleur du texte
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: theme.colorScheme.secondary, width: 2), // Bordure rouge
-                          borderRadius: BorderRadius.circular(15), // Coins arrondis
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Espacement interne
-                        elevation: 0, // Pas d'ombre
-                      ),
-                      child: const  Text('Envoyer'),
+                        label: 'envoyer'
+
                     ),
 
                   ],

@@ -15,12 +15,11 @@ class AvisClientsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream:
-          FirebaseFirestore.instance
-              .collection('avis_clients')
-              .orderBy('publishDate', descending: true)
-              .limit(15)
-              .snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('avis_clients')
+          .orderBy('publishDate', descending: true)
+          .limit(15)
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -30,28 +29,20 @@ class AvisClientsPage extends StatelessWidget {
           return Center(child: Text('Erreur : ${snapshot.error}'));
         }
 
-        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          debugPrint('⚠ Aucun avis trouvé');
-          return const Center(child: Text('Aucun avis disponible'));
-        }
-
-        // Transformation des données
-        List<AvisClients> avis =
-            snapshot.data!.docs
-                .map(
-                  (doc) => AvisClients.fromMap(
-                    doc.data() as Map<String, dynamic>,
-                    doc.id,
-                  ),
-                )
-                .toList();
+        List<AvisClients> avis = snapshot.hasData
+            ? snapshot.data!.docs
+            .map(
+              (doc) => AvisClients.fromMap(
+            doc.data() as Map<String, dynamic>,
+            doc.id,
+          ),
+        )
+            .toList()
+            : [];
 
         return Scaffold(
           appBar: const CustomAppBar(title: ''),
-          drawer:
-              MediaQuery.of(context).size.width <= 750
-                  ? const CustomDrawer()
-                  : null,
+          drawer: MediaQuery.of(context).size.width <= 750 ? const CustomDrawer() : null,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -59,16 +50,26 @@ class AvisClientsPage extends StatelessWidget {
                 'Les clients nous donnent leurs avis',
                 style: titleStyleMedium(context),
               ),
-              AvisClientsView(avis: avis),
+              avis.isNotEmpty
+                  ? AvisClientsView(avis: avis)
+                  : Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  'Aucun avis disponible',
+                  style: textStyleText(context),
+                ),
+              ),
               const SizedBox(height: 35),
               CustomButton(
                 label: 'Je donne mon avis',
                 onPressed: () => GoRouter.of(context).go('/addAvisClients'),
               ),
               const SizedBox(height: 55),
-              Footer(),
+
             ],
           ),
+          bottomNavigationBar: Footer(),
+
         );
       },
     );

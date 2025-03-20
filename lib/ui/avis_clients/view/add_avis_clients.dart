@@ -141,7 +141,7 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
 
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Avis ajouté avec succès')));
+    ).showSnackBar( SnackBar(content: Text('Avis ajouté avec succès', style: textStyleText(context),)));
 
     context.go('/'); // Redirection après ajout
   }

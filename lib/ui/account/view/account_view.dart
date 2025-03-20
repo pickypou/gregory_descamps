@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/utils/access_checker.dart';
 import '../../../theme.dart';
+import '../../common/custom_appbar.dart';
 import '../../common/custom_buttom.dart';
 
 class AccountView extends StatefulWidget {
@@ -41,28 +42,21 @@ class AccountViewState extends State<AccountView> {
     if (isLoading) {
       // Affiche un indicateur de chargement pendant la vérification
       return Scaffold(
-        appBar: AppBar(title: const Text('Mon Compte')),
+        appBar: const CustomAppBar(title: ''),
+    drawer:
+    MediaQuery.of(context).size.width <= 750
+    ? const CustomDrawer()
+        : null,
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.onSurface,
-        title: Text('Mon Compte', style: textStyleTextAppBar(context)),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            color: Theme.of(context).colorScheme.secondary,
-            onPressed: () {
-              auth.signOut().then((_) {
-                debugPrint('Déconnexion réussie');
-                context.go('/');
-              });
-            },
-          ),
-        ],
-      ),
+      appBar: const CustomAppBar(title: ''),
+        drawer:
+        MediaQuery.of(context).size.width <= 750
+            ? const CustomDrawer()
+            : null,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -73,25 +67,20 @@ class AccountViewState extends State<AccountView> {
                 CrossAxisAlignment
                     .stretch, // Étire les enfants sur toute la largeur
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 35),
               Text(
                 "Bonjour ${widget.userData['userName']}",
-                style: titleStyleLarge(context),
+                style: titleStyleMedium(context),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 35),
-              Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.contain,
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.2,
-              ),
+
               const SizedBox(height: 90),
               if (isAdmin) ...[
                 CustomButton(
                   label: 'Je supprime un avis_clients',
                   onPressed: () {
-                    GoRouter.of(context).go('/avisClients');
+                    GoRouter.of(context).go('/remove_avis_clients');
                   },
                 ),
                 const SizedBox(height: 50),

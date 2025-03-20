@@ -17,10 +17,7 @@ class Footer extends StatelessWidget {
           Divider(color: theme.colorScheme.primary, thickness: 1),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
+              padding: const EdgeInsets.fromLTRB(45, 10, 45, 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -43,10 +40,12 @@ class Footer extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+
                 ],
               ),
             ),
           ),
+
         ],
       ),
     );
