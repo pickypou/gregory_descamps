@@ -7,8 +7,15 @@ import '../common/footer.dart';
 
 class Portfolio extends StatelessWidget {
   final List<List<String>> imageLists = [
-    ["assets/images/chantiers/logo_1.png", "assets/images/chantiers/logo_2.png", "assets/images/chantiers/logo_3.png"],
-    ["assets/images/chantiers/logo_4.png", "assets/images/chantiers/logo_5.png"],
+    [
+      "assets/images/chantiers/logo_1.png",
+      "assets/images/chantiers/logo_2.png",
+      "assets/images/chantiers/logo_3.png",
+    ],
+    [
+      "assets/images/chantiers/logo_4.png",
+      "assets/images/chantiers/logo_5.png",
+    ],
   ];
 
   Portfolio({super.key});
@@ -17,7 +24,10 @@ class Portfolio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: ''),
-      drawer: MediaQuery.of(context).size.width <= 750 ? const CustomDrawer() : null,
+      drawer:
+          MediaQuery.of(context).size.width <= 750
+              ? const CustomDrawer()
+              : null,
       body: SingleChildScrollView(
         child: Center(
           child: ConstrainedBox(
@@ -26,12 +36,22 @@ class Portfolio extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Text('Mes Réalisations', style: titleStyleMedium(context), textAlign: TextAlign.center),
+                  Text(
+                    'Mes Réalisations',
+                    style: titleStyleMedium(context),
+                    textAlign: TextAlign.center,
+                  ),
                   const SizedBox(height: 35),
                   Wrap(
                     spacing: 20,
                     runSpacing: 20,
-                    children: imageLists.map((imageList) => _buildImageItem(context, imageList)).toList(),
+                    children:
+                        imageLists
+                            .map(
+                              (imageList) =>
+                                  _buildImageItem(context, imageList),
+                            )
+                            .toList(),
                   ),
                 ],
               ),
@@ -46,7 +66,10 @@ class Portfolio extends StatelessWidget {
   Widget _buildImageItem(BuildContext context, List<String> images) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double width = constraints.maxWidth > 600 ? (constraints.maxWidth - 20) / 2 : constraints.maxWidth;
+        double width =
+            constraints.maxWidth > 600
+                ? (constraints.maxWidth - 20) / 2
+                : constraints.maxWidth;
         return GestureDetector(
           onTap: () => showImageCarousel(context, images, 0),
           child: Hero(
@@ -56,7 +79,10 @@ class Portfolio extends StatelessWidget {
               height: width * 9 / 16,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: AssetImage(images[0]), fit: BoxFit.cover),
+                image: DecorationImage(
+                  image: AssetImage(images[0]),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -65,5 +91,3 @@ class Portfolio extends StatelessWidget {
     );
   }
 }
-
-

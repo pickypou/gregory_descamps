@@ -32,19 +32,16 @@ class ContactView extends StatelessWidget {
                 SizedBox(width: size.width, child: FormContact()),
 
                 const SizedBox(height: 10),
+                Text('Nous sommes situés au'),
+                const SizedBox(height: 35),
                 Text(
-                  'mettre ton adresse',
+                  '465, route de Puy Clavel.',
                   style: textStyleText(context),
-                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  '',
-                  style: textStyleText(context),
-                  textAlign: TextAlign.center,
-                ),
+                Text('46160 Grealou', style: textStyleText(context)),
+                const SizedBox(height: 35),
 
-                const SizedBox(height: 55),
                 Footer(),
               ],
             ),
@@ -81,17 +78,26 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/logos/logo-transparent.png'),
+                          Image.asset(
+                            'assets/images/logos/logo-transparent.png',
+                          ),
+                          const SizedBox(height: 35),
+                          const SizedBox(height: 10),
+                          Text('Nous sommes situés au'),
                           const SizedBox(height: 35),
                           Text(
-                            '465 route de puy Clavel',
+                            '465, route de Puy Clavel.',
                             style: textStyleText(context),
                           ),
-
                           const SizedBox(height: 10),
                           Text('46160 Grealou', style: textStyleText(context)),
                           const SizedBox(height: 35),
-                          Image.asset("assets/images/vue_maps.png", fit: BoxFit.contain, width: size.width *0.2,),
+                          const SizedBox(height: 35),
+                          Image.asset(
+                            "assets/images/vue_maps.png",
+                            fit: BoxFit.contain,
+                            width: size.width * 0.2,
+                          ),
                         ],
                       ),
                     ),

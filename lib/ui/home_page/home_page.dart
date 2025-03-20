@@ -46,11 +46,11 @@ class HomePage extends StatelessWidget {
                     style: textStyleText(context),
                   ),
                 ),
+                Footer(),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       );
     } else {
       return Scaffold(
@@ -61,9 +61,11 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/logos/logo-transparent.png',
-                fit: BoxFit.cover,),
-                const SizedBox(height: 35,),
+                Image.asset(
+                  'assets/images/logos/logo-transparent.png',
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 35),
                 Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -84,11 +86,11 @@ class HomePage extends StatelessWidget {
                     style: textStyleText(context),
                   ),
                 ),
+                Footer(),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: Footer(),
       );
     }
   }
