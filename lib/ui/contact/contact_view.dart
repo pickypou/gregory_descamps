@@ -33,16 +33,12 @@ class ContactView extends StatelessWidget {
 
                 const SizedBox(height: 10),
                 Text(
-                  'mettre ton adresse',
+                  '465 route de puy Clavel',
                   style: textStyleText(context),
-                  textAlign: TextAlign.center,
                 ),
+
                 const SizedBox(height: 10),
-                Text(
-                  '',
-                  style: textStyleText(context),
-                  textAlign: TextAlign.center,
-                ),
+                Text('46160 Grealou', style: textStyleText(context)),
 
                 const SizedBox(height: 55),
                 Footer(),

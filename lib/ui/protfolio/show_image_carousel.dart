@@ -41,7 +41,7 @@ void showImageCarousel(
                     initialPage: index,
                     enableInfiniteScroll: true,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: Duration(seconds: 2),
                     aspectRatio: 16 / 9,
                     viewportFraction: 1.0,
                     enlargeCenterPage: true,

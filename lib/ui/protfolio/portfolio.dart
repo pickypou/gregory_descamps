@@ -7,8 +7,10 @@ import '../common/footer.dart';
 
 class Portfolio extends StatelessWidget {
   final List<List<String>> imageLists = [
-    ["assets/images/chantiers/logo_1.png", "assets/images/chantiers/logo_2.png", "assets/images/chantiers/logo_3.png"],
-    ["assets/images/chantiers/logo_4.png", "assets/images/chantiers/logo_5.png"],
+    ["assets/images/chantiers/img_1.jpg", "assets/images/chantiers/img_2.jpg", "assets/images/chantiers/img_3.jpg"],
+    ["assets/images/chantiers/img_4.jpg", "assets/images/chantiers/img_5.jpg"],
+    ["assets/images/chantiers/img_1.jpg", "assets/images/chantiers/img_2.jpg", "assets/images/chantiers/img_3.jpg"],
+    ["assets/images/chantiers/img_4.jpg", "assets/images/chantiers/img_5.jpg"],
   ];
 
   Portfolio({super.key});
@@ -18,28 +20,34 @@ class Portfolio extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: ''),
       drawer: MediaQuery.of(context).size.width <= 750 ? const CustomDrawer() : null,
-      body: SingleChildScrollView(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 1200),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Text('Mes Réalisations', style: titleStyleMedium(context), textAlign: TextAlign.center),
-                  const SizedBox(height: 35),
-                  Wrap(
-                    spacing: 20,
-                    runSpacing: 20,
-                    children: imageLists.map((imageList) => _buildImageItem(context, imageList)).toList(),
+      body: Column(
+        children: [
+          Expanded( // Utilisation de Expanded pour que le footer soit en bas
+            child: SingleChildScrollView(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 1200),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Text('Mes Réalisations', style: titleStyleMedium(context), textAlign: TextAlign.center),
+                        const SizedBox(height: 35),
+                        Wrap(
+                          spacing: 20,
+                          runSpacing: 20,
+                          children: imageLists.map((imageList) => _buildImageItem(context, imageList)).toList(),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
+          Footer(), // Footer est en bas
+        ],
       ),
-      bottomNavigationBar: Footer(),
     );
   }
 
@@ -65,5 +73,3 @@ class Portfolio extends StatelessWidget {
     );
   }
 }
-
-
