@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gregory_descamps/ui/common/card_experience.dart';
 import 'package:gregory_descamps/ui/common/header.dart';
-import '../../theme.dart';
+import 'package:gregory_descamps/ui/common/presentation_entreprise.dart';
+import 'package:gregory_descamps/ui/common/prestations.dart';
+
 import '../common/custom_appbar.dart';
 import '../common/footer.dart';
 
@@ -47,8 +49,10 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 35),
+                  Prestations(),
+                  const SizedBox(height: 35),
+                  PresentationEntreprise(),
                 ],
               ),
             ),

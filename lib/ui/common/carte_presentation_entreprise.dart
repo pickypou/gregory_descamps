@@ -1,32 +1,34 @@
+// CartePresentationEntreprise.dart
 import 'package:flutter/material.dart';
 import 'package:gregory_descamps/theme.dart';
 
 class CartePresentationEntreprise extends StatelessWidget {
-  const CartePresentationEntreprise({super.key});
+  final double? headerHeight;
+
+  const CartePresentationEntreprise({super.key, this.headerHeight});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context); // Obtenir la taille complète de l'écran
+    Size size = MediaQuery.sizeOf(context);
 
     if (size.width < 749) {
-
       return Container();
-
     } else {
-      // Pour les écrans plus larges, on garde la bordure à gauche et une largeur spécifique
+      // Calcul de la hauteur de la carte en fonction de la hauteur du header
+      double cardHeight =
+          headerHeight != null ? headerHeight! * 0.5 : size.height * 0.4;
+
       return Container(
-        width: size.width * 0.4, // Largeur réduite pour les grands écrans
-        height: size.height / 2,
+        width: size.width * 0.4,
+        height: cardHeight, // Hauteur de la carte à 50% de la hauteur du header
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 45),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5), // 🎨 Opacité du fond
-          border: const Border(
-            left: BorderSide(color: Colors.white, width: 4), // 🚀 Bordure à gauche
-          ),
+          color: Colors.black.withOpacity(0.5),
+          border: const Border(left: BorderSide(color: Colors.white, width: 4)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start, // Alignement à gauche
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Grégory DESCAMPS",
