@@ -56,15 +56,15 @@ class Footer extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           "© 2025 Grégory DESCAMPS tous droits réservés",
-          style: textStyleText(context),
+          style: textStyleTextAccueil(context),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 4),
+        /*const SizedBox(height: 4),
         Text(
           "N° de Siret : 75073281000015",
           style: textStyleTextAccueil(context),
           textAlign: TextAlign.center,
-        ),
+        ),*/
       ],
     );
   }
@@ -82,18 +82,18 @@ class Footer extends StatelessWidget {
           flex: 2,
           child: Text(
             "© 2025 Grégory DESCAMPS tous droits réservés",
-            style: textStyleText(context),
+            style: textStyleTextAccueil(context),
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        Flexible(
+/*Flexible(
           flex: 1,
           child: Text(
             "N° de Siret : 75073281000015",
             style: textStyleTextAccueil(context),
             overflow: TextOverflow.ellipsis,
           ),
-        ),
+        ),*/
       ],
     );
   }

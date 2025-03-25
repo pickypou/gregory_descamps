@@ -14,7 +14,7 @@ class CardExperience extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 350,
       // Ajoute une largeur fixe pour éviter l'erreur
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

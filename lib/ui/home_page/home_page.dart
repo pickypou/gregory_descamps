@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      appBar: const CustomAppBar(title: ''),
+      appBar: const CustomAppBar(title: 'N° de Siret : 75073281000015'),
       drawer: size.width <= 750 ? const CustomDrawer() : null,
       body: Column(
         children: [

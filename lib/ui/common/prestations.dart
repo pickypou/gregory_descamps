@@ -126,7 +126,7 @@ class _PrestationsState extends State<Prestations> {
           options: CarouselOptions(
             height: 500,
             autoPlay: false,
-            viewportFraction: 0.8,
+            viewportFraction: 0.9,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               setState(() {
@@ -151,16 +151,13 @@ class _PrestationsState extends State<Prestations> {
                     const SizedBox(height: 5),
                     Text(
                       prestation['title']!,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                      style : titleStyleSmall(context)
+                      
                     ),
                     const SizedBox(height: 5),
                     Text(
                       prestation['text']!,
-                      style: const TextStyle(fontSize: 16),
+                      style: textStyleText(context),
                     ),
                   ],
                 );
@@ -180,13 +177,13 @@ class _PrestationsState extends State<Prestations> {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black54,
+               // shape: BoxShape.circle,
+               // color: Colors.black54,
               ),
-              child: const Icon(
+              child:  Icon(
                 Icons.chevron_left,
                 size: 40,
-                color: Colors.white,
+                color: theme.colorScheme.primary,
               ),
             ),
           ),
@@ -205,13 +202,13 @@ class _PrestationsState extends State<Prestations> {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black54,
+               // shape: BoxShape.circle,
+               // color: Colors.black54,
               ),
-              child: const Icon(
+              child:  Icon(
                 Icons.chevron_right,
                 size: 40,
-                color: Colors.white,
+                color: theme.colorScheme.primary,
               ),
             ),
           ),
