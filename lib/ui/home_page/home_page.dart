@@ -6,6 +6,7 @@ import 'package:gregory_descamps/ui/common/prestations.dart';
 
 import '../common/custom_appbar.dart';
 import '../common/footer.dart';
+import '../common/image_fond_ecran.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,7 +18,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: 'N° de Siret : 75073281000015'),
       drawer: size.width <= 750 ? const CustomDrawer() : null,
-      body: Column(
+      body:Stack(
+        children: [
+          Positioned.fill(
+            // Assure que l'image prend tout l'écran
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(ImageFondEcran.imagePath),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+
+      Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -58,6 +73,8 @@ class HomePage extends StatelessWidget {
             ),
           ),
           Footer(), // ✅ Footer fixe en bas
+        ],
+      ),
         ],
       ),
     );
