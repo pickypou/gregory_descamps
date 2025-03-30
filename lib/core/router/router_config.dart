@@ -29,6 +29,7 @@ class AppRouterConfig {
       ...getIt<LoginModule>().getRoutes(),
       ...getIt<AccountModule>().getRoutes(),
     ],
+
     errorBuilder: (context, state) => const ErrorPage(),
   );
 }

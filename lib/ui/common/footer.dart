@@ -50,7 +50,7 @@ class Footer extends StatelessWidget {
       children: [
         // L'image est déjà dimensionnée dans le composant ClickableImage
         ClickableImage(
-          imagePath: 'assets/images/logos/logo.png',
+          imagePath: 'assets/images/logos/logo-transparent.svg',
           route: "/admin",
         ),
         const SizedBox(height: 8),

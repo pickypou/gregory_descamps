@@ -27,6 +27,7 @@ void main() async {
         DefaultFirebaseOptions
             .currentPlatform, // Utilise la config Firebase pour Web
   );
+  // Configurez Flutter Web pour utiliser le routage par chemin
 
   // Configure les dépendances (ex. DI)
   configureDependencies();

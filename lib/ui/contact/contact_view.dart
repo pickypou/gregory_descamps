@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../theme.dart';
 import '../common/custom_appbar.dart';
@@ -27,7 +28,7 @@ class ContactView extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text("Nous contacter", style: titleStyleMedium(context)),
 
-                Image.asset('assets/images/logos/logo.png'),
+                SvgPicture.asset('assets/images/logos/logo-transparent.svg'),
 
                 SizedBox(width: size.width, child: FormContact()),
 
@@ -77,7 +78,7 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/logos/logo-transparent.png'),
+                          SvgPicture.asset('assets/images/logos/logo-transparent.svg'),
                           const SizedBox(height: 35),
                           Text(
                             '465 route de puy Clavel',
