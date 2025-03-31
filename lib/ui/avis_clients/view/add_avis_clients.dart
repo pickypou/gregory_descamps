@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gregory_descamps/theme.dart';
 import 'package:gregory_descamps/ui/common/footer.dart';
 
-import '../../common/custom_appbar.dart';
 import '../../common/custom_buttom.dart';
 import '../../common/custom_text_field.dart';
 import '../avis_clients_bloc.dart';
@@ -48,11 +47,6 @@ class AddAvisClientsViewState extends State<AddAvisClientsView> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: const CustomAppBar(title: ''),
-          drawer:
-          MediaQuery.of(context).size.width <= 750
-              ? const CustomDrawer()
-              : null,
           body: _buildBody(context, state),
         );
       },

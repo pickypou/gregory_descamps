@@ -1,6 +1,5 @@
 // Header.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'carte_presentation_entreprise.dart';
 
@@ -33,8 +32,8 @@ class Header extends StatelessWidget {
                 child: Center(
                   child: SizedBox(
                     width: size.width * 0.8,
-                    child: SvgPicture.asset(
-                      'assets/images/logos/logo-transparent.svg',
+                    child: Image.asset(
+                      'assets/images/logos/logo-transparent.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -69,8 +68,8 @@ class Header extends StatelessWidget {
                     0.1, // Positionnement relatif à la hauteur du header
                 child: SizedBox(
                   width: size.width * 0.4,
-                  child: SvgPicture.asset(
-                    'assets/images/logos/logo-transparent.svg',
+                  child: Image.asset(
+                    'assets/images/logos/logo-transparent.png',
                     fit: BoxFit.contain,
                   ),
                 ),

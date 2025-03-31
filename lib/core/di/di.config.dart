@@ -32,6 +32,7 @@ import '../../ui/protfolio/portfolio_module.dart' as _i982;
 import '../../ui/ui_module.dart' as _i573;
 import '../../ui/users/add_user_module.dart' as _i753;
 import '../../ui/users/login/login_module.dart' as _i863;
+import '../../ui/view_all/view_all_module.dart' as _i261;
 import '../api/auth_service.dart' as _i893;
 import '../api/firestore_service.dart' as _i551;
 import '../router/router_config.dart' as _i718;
@@ -73,6 +74,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i122.FetchAvisClientDataUseCase>(
       () => _i122.FetchAvisClientDataUseCase(gh<_i990.AvisClientsRepository>()),
     );
+    gh.singleton<_i692.AccountModule>(
+      () => _i692.AccountModule(gh<_i573.AppRouter>()),
+    );
+    gh.singleton<_i727.AdminPageModule>(
+      () => _i727.AdminPageModule(gh<_i573.AppRouter>()),
+    );
     gh.singleton<_i81.AddAvisClientsModule>(
       () => _i81.AddAvisClientsModule(gh<_i573.AppRouter>()),
     );
@@ -91,17 +98,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i982.PortfolioModule>(
       () => _i982.PortfolioModule(gh<_i573.AppRouter>()),
     );
-    gh.singleton<_i692.AccountModule>(
-      () => _i692.AccountModule(gh<_i573.AppRouter>()),
-    );
-    gh.singleton<_i727.AdminPageModule>(
-      () => _i727.AdminPageModule(gh<_i573.AppRouter>()),
-    );
     gh.singleton<_i753.AddUserModule>(
       () => _i753.AddUserModule(gh<_i573.AppRouter>()),
     );
     gh.singleton<_i863.LoginModule>(
       () => _i863.LoginModule(gh<_i573.AppRouter>()),
+    );
+    gh.singleton<_i261.ViewAllModule>(
+      () => _i261.ViewAllModule(gh<_i573.AppRouter>()),
     );
     gh.singleton<_i606.AvisClientsInteractor>(
       () => _i606.AvisClientsInteractor(

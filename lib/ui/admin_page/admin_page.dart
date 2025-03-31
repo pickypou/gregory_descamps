@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/utils/check_user_connection.dart';
 import '../../theme.dart';
 import '../common/custom_buttom.dart';
 
@@ -13,7 +12,6 @@ class AdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = GetIt.instance<FirebaseAuth>();
-    Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,

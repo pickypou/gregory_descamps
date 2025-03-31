@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import '../../../theme.dart';
 
-import '../../theme.dart';
+
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
-  final VoidCallback? onNavigate;
+  final void Function(String)? onNavigate;
 
   const CustomAppBar({
     super.key,
@@ -18,114 +18,83 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 
-  Widget getLeading(BuildContext context) {
-    final isWideScreen = MediaQuery.of(context).size.width > 749;
-
-    if (!isWideScreen) {
-      return Builder(
-        builder: (BuildContext context) {
-          return IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: Icon(
-              Icons.menu,
-              color: theme.colorScheme.primary,
-            ),
-          );
-        },
-      );
+  Widget? _getLeading(BuildContext context) {
+    if (MediaQuery.of(context).size.width > 750) {
+      return null; // No menu button on large screens
     } else {
-      return context.canPop()
-          ? IconButton(
-        icon:  Icon(Icons.arrow_back, color:theme.colorScheme.primary),
-        onPressed: () => context.pop(),
-      )
-          : Container(); // Retourne un widget vide si on ne peut pas revenir en arrière
+      return IconButton(
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+        icon: Icon(Icons.menu, color: theme.colorScheme.onPrimary),
+      );
     }
   }
 
-  List<Widget> generateNavActions(BuildContext context) {
-    final List<Map<String, String>> navItems = [
-      {'label': 'Accueil', 'route': '/'},
-      {'label' : 'Mes réalisations', 'route' : '/portfolio'},
-      {'label' : 'Avis des clients', 'route' : '/avisClients'},
-      {'label' : 'Contact', 'route' : '/contact'},
-
-
-
-
-
-    ];
-
-    return navItems.map((item) {
-      return GestureDetector(
-        onTap: () => GoRouter.of(context).go(item['route']!),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Center(
-            child: Text(
-              item['label']!,
-              style: textStyleTextAppBar(context),
-            ),
-          ),
-        ),
-      );
-    }).toList();
+  void _scrollToSection(BuildContext context, String sectionId) {
+    if (onNavigate != null) {
+      onNavigate!(sectionId);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isWideScreen = MediaQuery.of(context).size.width > 749;
-
     return AppBar(
       backgroundColor: theme.colorScheme.onSurface,
       title: Text(
-        title,style: textStyleTextAppBar(context),
+        title,
         textAlign: TextAlign.center,
       ),
-      leading: getLeading(context),
+      leading: _getLeading(context),
       actions: [
-        if (actions != null)
-          ...actions!.map((action) => Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: action,
-          )),
-        if (onNavigate != null)
-          IconButton(
-            icon:  Icon(Icons.new_releases, color: theme.colorScheme.primary),
-            onPressed: onNavigate!,
-          ),
-        if (isWideScreen) ...generateNavActions(context),
+        if (MediaQuery.of(context).size.width > 750) // For large screens
+          ...[
+            _buildNavItem(context, 'Accueil', 'accueil'),
+            _buildNavItem(context, 'Mes réalisation', 'realisation'),
+            _buildNavItem(context, 'Avis clients', 'avisClients'),
+            _buildNavItem(context, 'Contact', 'contact'),
+          ],
       ],
     );
   }
+
+  Widget _buildNavItem(BuildContext context, String label, String sectionId) {
+    return GestureDetector(
+      onTap: () => _scrollToSection(context, sectionId),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(fontSize: 16.0, color: theme.colorScheme.onPrimary),
+          ),
+        ),
+      ),
+    );
+  }
 }
-
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final GlobalKey accueil;
+  final GlobalKey realisation;
+  final GlobalKey avisClients;
+  final GlobalKey contact;
 
-  // Méthode pour générer les éléments du drawer
-  List<Widget> generateDrawerItems(BuildContext context) {
-    final List<Map<String, String>> drawerItems = [
-      {'label': 'Accueil', 'route': '/'},
-      {'label' : 'Mes réalisations', 'route' : '/portfolio'},
-      {'label' : 'Avis des clients', 'route' : '/avisClients'},
-      {'label' : 'Contact', 'route' : '/contact'},
+  const CustomDrawer({
+    super.key,
+    required this.accueil,
+    required this.realisation,
+    required this.avisClients,
+    required this.contact,
+  });
 
-
-
-    ];
-
-    return drawerItems.map((item) {
-      return ListTile(
-        title: Text(item['label']!, style: textStyleTextAppBar(context),),
-        onTap: () {
-          GoRouter.of(context).go(item['route']!);
-          Navigator.pop(context); // Fermer le drawer après la navigation
-        },
+  void _scrollToSection(GlobalKey sectionKey) {
+    if (sectionKey.currentContext != null) {
+      Scrollable.ensureVisible(
+        sectionKey.currentContext!,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeInOut,
       );
-    }).toList();
+    }
   }
 
   @override
@@ -134,8 +103,39 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: theme.colorScheme.onSurface,
       elevation: 0,
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(10, 25, 0, 0),
-        children: generateDrawerItems(context),
+        padding: EdgeInsets.zero,
+        children: [
+
+          ListTile(
+            title: Text('Accueil', style: TextStyle(color: theme.colorScheme.onPrimary)),
+            onTap: () {
+              _scrollToSection(accueil);
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('Mes réalisation', style: TextStyle(color: theme.colorScheme.onPrimary)),
+            onTap: () {
+              _scrollToSection(realisation);
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('Avis clients', style: TextStyle(color: theme.colorScheme.onPrimary)),
+            onTap: () {
+              _scrollToSection(avisClients);
+              Navigator.pop(context);
+            },
+          ),
+
+          ListTile(
+            title: Text('Contact', style: TextStyle(color: theme.colorScheme.onPrimary)),
+            onTap: () {
+              _scrollToSection(contact);
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }

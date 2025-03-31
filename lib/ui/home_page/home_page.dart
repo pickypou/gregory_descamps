@@ -4,39 +4,18 @@ import 'package:gregory_descamps/ui/common/header.dart';
 import 'package:gregory_descamps/ui/common/presentation_entreprise.dart';
 import 'package:gregory_descamps/ui/common/prestations.dart';
 
-import '../common/custom_appbar.dart';
-import '../common/footer.dart';
-import '../common/image_fond_ecran.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
 
-    return Scaffold(
-      appBar: const CustomAppBar(title: 'N° de Siret : 75073281000015'),
-      drawer: size.width <= 750 ? const CustomDrawer() : null,
-      body:Stack(
-        children: [
-          Positioned.fill(
-            // Assure que l'image prend tout l'écran
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(ImageFondEcran.imagePath),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
+    return
 
       Column(
         children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
+           Column(
                 children: [
                   Header(),
                   const SizedBox(height: 25),
@@ -70,13 +49,11 @@ class HomePage extends StatelessWidget {
                   PresentationEntreprise(),
                 ],
               ),
-            ),
-          ),
-          Footer(), // ✅ Footer fixe en bas
+
         ],
-      ),
-        ],
-      ),
+
+
+
     );
   }
 }

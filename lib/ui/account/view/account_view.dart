@@ -1,11 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/utils/access_checker.dart';
 import '../../../theme.dart';
-import '../../common/custom_appbar.dart';
 import '../../common/custom_buttom.dart';
 
 class AccountView extends StatefulWidget {
@@ -37,26 +34,15 @@ class AccountViewState extends State<AccountView> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = GetIt.instance<FirebaseAuth>();
 
     if (isLoading) {
       // Affiche un indicateur de chargement pendant la vérification
       return Scaffold(
-        appBar: const CustomAppBar(title: ''),
-    drawer:
-    MediaQuery.of(context).size.width <= 750
-    ? const CustomDrawer()
-        : null,
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return Scaffold(
-      appBar: const CustomAppBar(title: ''),
-        drawer:
-        MediaQuery.of(context).size.width <= 750
-            ? const CustomDrawer()
-            : null,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
