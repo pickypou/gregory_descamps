@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../theme.dart';
 import 'clickable_image.dart';
@@ -44,9 +45,7 @@ class Footer extends StatelessWidget {
 
   // Disposition pour petits écrans
   Widget _buildSmallScreenLayout(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Wrap(
       children: [
         // L'image est déjà dimensionnée dans le composant ClickableImage
         ClickableImage(
@@ -56,15 +55,23 @@ class Footer extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           "© 2025 Grégory DESCAMPS tous droits réservés",
-          style: textStyleTextAccueil(context),
-          textAlign: TextAlign.center,
+          style: textStyleTextAccueil(context).copyWith(fontSize: 10),
+          textAlign: TextAlign.start,
         ),
-        /*const SizedBox(height: 4),
-        Text(
-          "N° de Siret : 75073281000015",
-          style: textStyleTextAccueil(context),
-          textAlign: TextAlign.center,
-        ),*/
+        const SizedBox(height: 4),
+        TextButton(
+          onPressed: () async {
+            final Uri url = Uri.parse('https://ludovicspysschaert.fr/');
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            } else {
+              // Tu peux afficher une erreur ici
+              throw 'Impossible d’ouvrir l’URL : $url';
+            }
+          },
+          child: 
+          Text('Céation Ludovic SPYSSCHAERT', style:textStyleText(context).copyWith(fontSize: 10), textAlign: TextAlign.end,),
+        ),
       ],
     );
   }
@@ -86,14 +93,22 @@ class Footer extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-/*Flexible(
+Flexible(
           flex: 1,
-          child: Text(
-            "N° de Siret : 75073281000015",
-            style: textStyleTextAccueil(context),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),*/
+          child:  TextButton(
+          onPressed: () async {
+            final Uri url = Uri.parse('https://ludovicspysschaert.fr/');
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            } else {
+              // Tu peux afficher une erreur ici
+              throw 'Impossible d’ouvrir l’URL : $url';
+            }
+          },
+          child:
+          Text('Céation Ludovic SPYSSCHAERT', style:textStyleText(context).copyWith(fontSize: 10), textAlign: TextAlign.end,),
+        ),
+        ),
       ],
     );
   }
