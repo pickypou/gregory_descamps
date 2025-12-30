@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gregory_descamps/theme.dart';
 import 'package:gregory_descamps/ui/protfolio/show_image_carousel.dart';
 
-import '../common/image_fond_ecran.dart';
-
 class Portfolio extends StatelessWidget {
   final List<List<String>> imageLists = [
     [
@@ -24,44 +22,40 @@ class Portfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        Column(
-          children: [
-            Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 1200),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 65,),
-                      Text(
-                        'Mes Réalisations',
-                        style: titleStyleMedium(context),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 35),
-                      Wrap(
-                        spacing: 20,
-                        runSpacing: 20,
-                        children:
-                            imageLists
-                                .map(
-                                  (imageList) =>
-                                      _buildImageItem(context, imageList),
-                                )
-                                .toList(),
-
-                      ),
-                      const SizedBox(height: 65,),
-
-                    ],
+    return Column(
+      children: [
+        Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 1200),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 65),
+                  Text(
+                    'Mes Réalisations',
+                    style: titleStyleMedium(context),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                  const SizedBox(height: 35),
+                  Wrap(
+                    spacing: 20,
+                    runSpacing: 20,
+                    children:
+                        imageLists
+                            .map(
+                              (imageList) =>
+                                  _buildImageItem(context, imageList),
+                            )
+                            .toList(),
+                  ),
+                  const SizedBox(height: 65),
+                ],
               ),
             ),
-          ],
-
+          ),
+        ),
+      ],
     );
   }
 

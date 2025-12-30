@@ -5,11 +5,7 @@ class CardExperience extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const CardExperience({
-    Key? key,
-    required this.icon,
-    required this.text,
-  }) : super(key: key);
+  const CardExperience({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +18,7 @@ class CardExperience extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 6,
             spreadRadius: 2,
           ),

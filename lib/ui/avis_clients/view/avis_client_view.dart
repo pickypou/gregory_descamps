@@ -187,8 +187,8 @@ class _AvisClientsViewState extends State<AvisClientsView> {
                         margin: const EdgeInsets.symmetric(horizontal: 4.0),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.black.withOpacity(
-                            _currentIndex == entry.key ? 0.9 : 0.4,
+                          color: Colors.black.withValues(
+                            alpha: _currentIndex == entry.key ? 0.9 : 0.4,
                           ),
                         ),
                       );

@@ -31,15 +31,18 @@ class AvisClientsListView extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             color: Theme.of(context).colorScheme.primary,
-            onPressed: () {
-              auth.signOut().then((_) => context.go('/'));
+            onPressed: () async {
+              await auth.signOut();
+              if (context.mounted) {
+                context.go('/');
+              }
             },
-          )
+          ),
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream:
-        FirebaseFirestore.instance.collection('avis_clients').snapshots(),
+            FirebaseFirestore.instance.collection('avis_clients').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -60,60 +63,74 @@ class AvisClientsListView extends StatelessWidget {
             child: Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
-              children: evenements.map((doc) {
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  child: Card(
-                    color: theme.colorScheme.surface,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      side: BorderSide(
-                        color: theme.colorScheme.secondary,
-                        width: 2, // Épaisseur de la bordure
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            doc['firstname'],
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            textAlign: TextAlign.center,
+              children:
+                  evenements.map((doc) {
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: Card(
+                        color: theme.colorScheme.surface,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          side: BorderSide(
+                            color: theme.colorScheme.secondary,
+                            width: 2, // Épaisseur de la bordure
                           ),
-                          const SizedBox(height: 8.0),
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            color: Colors.red,
-                            onPressed: () async {
-                              final confirm = await _confirmDelete(context);
-                              if (confirm) {
-                                try {
-                                  await interactor.removeAvisClient(doc.id);
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                     SnackBar(
-                                        content:
-                                        Text('avis supprimé avec succès', style: textStyleText(context),)),
-                                  );
-                                } catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Erreur : $e')),
-                                  );
-                                }
-                              }
-                            },
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                doc['firstname'],
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8.0),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                color: Colors.red,
+                                onPressed: () async {
+                                  final confirm = await _confirmDelete(context);
+                                  if (confirm && context.mounted) {
+                                    try {
+                                      await interactor.removeAvisClient(doc.id);
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'avis supprimé avec succès',
+                                              style: textStyleText(context),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    } catch (e) {
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Erreur : $e'),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  }
+                                },
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              }).toList(),
+                    );
+                  }).toList(),
             ),
           );
         },
@@ -123,26 +140,31 @@ class AvisClientsListView extends StatelessWidget {
 
   Future<bool> _confirmDelete(BuildContext context) async {
     return await showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return
-          AlertDialog(
-            backgroundColor: theme.colorScheme.onError,
-          title:  Text('Confirmer la suppression', style: textStyleText(context),),
-          content:  Text('Voulez-vous vraiment supprimer cet avis ?',  style: textStyleText(context)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Annuler'),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Supprimer'),
-            ),
-          ],
-        );
-      },
-    ) ??
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: theme.colorScheme.onError,
+              title: Text(
+                'Confirmer la suppression',
+                style: textStyleText(context),
+              ),
+              content: Text(
+                'Voulez-vous vraiment supprimer cet avis ?',
+                style: textStyleText(context),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: const Text('Annuler'),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: const Text('Supprimer'),
+                ),
+              ],
+            );
+          },
+        ) ??
         false;
   }
 }

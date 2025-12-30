@@ -12,8 +12,6 @@ class Prestations extends StatefulWidget {
 class _PrestationsState extends State<Prestations> {
   final CarouselSliderController _controller = CarouselSliderController();
 
-  int _currentIndex = 0;
-
   final List<Map<String, String>> prestations = [
     {
       'image': 'assets/images/chantiers/img_1.jpg',
@@ -128,11 +126,6 @@ class _PrestationsState extends State<Prestations> {
             autoPlay: false,
             viewportFraction: 0.9,
             enlargeCenterPage: true,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
           ),
           items:
               prestations.map((prestation) {
@@ -149,16 +142,9 @@ class _PrestationsState extends State<Prestations> {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
-                      prestation['title']!,
-                      style : titleStyleSmall(context)
-                      
-                    ),
+                    Text(prestation['title']!, style: titleStyleSmall(context)),
                     const SizedBox(height: 5),
-                    Text(
-                      prestation['text']!,
-                      style: textStyleText(context),
-                    ),
+                    Text(prestation['text']!, style: textStyleText(context)),
                   ],
                 );
               }).toList(),
@@ -177,10 +163,10 @@ class _PrestationsState extends State<Prestations> {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-               // shape: BoxShape.circle,
-               // color: Colors.black54,
+                // shape: BoxShape.circle,
+                // color: Colors.black54,
               ),
-              child:  Icon(
+              child: Icon(
                 Icons.chevron_left,
                 size: 40,
                 color: theme.colorScheme.primary,
@@ -202,10 +188,10 @@ class _PrestationsState extends State<Prestations> {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-               // shape: BoxShape.circle,
-               // color: Colors.black54,
+                // shape: BoxShape.circle,
+                // color: Colors.black54,
               ),
-              child:  Icon(
+              child: Icon(
                 Icons.chevron_right,
                 size: 40,
                 color: theme.colorScheme.primary,

@@ -22,11 +22,12 @@ class AdminPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             color: Theme.of(context).colorScheme.secondary,
-            onPressed: () {
-              auth.signOut().then((_) {
-                debugPrint('Déconnexion réussie');
+            onPressed: () async {
+              await auth.signOut();
+              debugPrint('Déconnexion réussie');
+              if (context.mounted) {
                 context.go('/');
-              });
+              }
             },
           ),
         ],

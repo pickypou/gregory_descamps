@@ -23,7 +23,7 @@ class CartePresentationEntreprise extends StatelessWidget {
         height: cardHeight, // Hauteur de la carte à 50% de la hauteur du header
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 45),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withValues(alpha: 0.5),
           border: const Border(left: BorderSide(color: Colors.white, width: 4)),
         ),
         child: Column(

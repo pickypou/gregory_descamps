@@ -32,7 +32,6 @@ class ViewAll extends StatelessWidget {
         key = contact;
         break;
     }
-    ;
 
     if (key?.currentContext != null) {
       Scrollable.ensureVisible(
