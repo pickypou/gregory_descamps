@@ -14,19 +14,19 @@ class _PrestationsState extends State<Prestations> {
 
   final List<Map<String, String>> prestations = [
     {
-      'image': 'assets/images/chantiers/img_1.jpg',
+      'image': 'assets/images/chantiers/img_1.png',
       'title': 'Travaux de plâtrerie',
       'text':
           'Nous nous occupons de la pose de cloisons, de faux plafonds et d’enduits pour vos projets de construction neuve ou de rénovation. Nos travaux de plâtrerie assurent une finition parfaite et un confort thermique et acoustique optimal.',
     },
     {
-      'image': 'assets/images/chantiers/img_6.jpg',
+      'image': 'assets/images/chantiers/img_8.png',
       'title': 'Revêtement de sol',
       'text':
           'Nous réalisons la pose de vos revêtements de sol, qu’il s’agisse de stratifié ou de PVC, en garantissant une découpe soignée et une finition impeccable. Nous nous assurons que chaque installation respecte vos attentes en termes de qualité, de durabilité et d’esthétique, pour un résultat à la hauteur de vos exigences.',
     },
     {
-      'image': 'assets/images/chantiers/img_7.jpg',
+      'image': 'assets/images/chantiers/img_13.png',
       'title': 'Travaux de peinture',
       'text':
           'Nous réalisons tous types de travaux de peinture, qu’il s’agisse de la rénovation de vos murs intérieurs ou de l’embellissement de vos façades extérieures. Grâce à des techniques modernes et des peintures de haute qualité, nous vous garantissons un rendu impeccable, durable et respectueux de vos goûts et de l’environnement.',

@@ -69,7 +69,7 @@ TextStyle titleStyleSmall(BuildContext context) {
 TextStyle textStyleText(BuildContext context) {
   return
     GoogleFonts.montserrat().copyWith(
-      fontSize: calculateFontSize(context, ratio: 70),
+      fontSize: calculateFontSize(context, ratio: 80),
       color: Theme.of(context).colorScheme.onPrimary,
       decoration: TextDecoration.none,
     );

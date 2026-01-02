@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 
-
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
@@ -41,19 +39,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: theme.colorScheme.onSurface,
-      title: Text(
-        title,
-        textAlign: TextAlign.center,
-      ),
+      title: Text(title, textAlign: TextAlign.center),
       leading: _getLeading(context),
       actions: [
         if (MediaQuery.of(context).size.width > 750) // For large screens
-          ...[
-            _buildNavItem(context, 'Accueil', 'accueil'),
-            _buildNavItem(context, 'Mes réalisation', 'realisation'),
-            _buildNavItem(context, 'Avis clients', 'avisClients'),
-            _buildNavItem(context, 'Contact', 'contact'),
-          ],
+        ...[
+          _buildNavItem(context, 'Accueil', 'accueil'),
+          _buildNavItem(context, 'Mes réalisation', 'realisation'),
+          _buildNavItem(context, 'Avis clients', 'avisClients'),
+          _buildNavItem(context, 'Contact', 'contact'),
+        ],
       ],
     );
   }
@@ -66,35 +61,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Center(
           child: Text(
             label,
-            style: TextStyle(fontSize: 16.0, color: theme.colorScheme.onPrimary),
+            style: TextStyle(
+              fontSize: 16.0,
+              color: theme.colorScheme.onPrimary,
+            ),
           ),
         ),
       ),
     );
   }
 }
+
 class CustomDrawer extends StatelessWidget {
-  final GlobalKey accueil;
-  final GlobalKey realisation;
-  final GlobalKey avisClients;
-  final GlobalKey contact;
+  final void Function(String)? onNavigate;
 
-  const CustomDrawer({
-    super.key,
-    required this.accueil,
-    required this.realisation,
-    required this.avisClients,
-    required this.contact,
-  });
+  const CustomDrawer({super.key, this.onNavigate});
 
-  void _scrollToSection(GlobalKey sectionKey) {
-    if (sectionKey.currentContext != null) {
-      Scrollable.ensureVisible(
-        sectionKey.currentContext!,
-        duration: const Duration(seconds: 1),
-        curve: Curves.easeInOut,
-      );
+  void _scrollToSection(BuildContext context, String sectionId) {
+    if (onNavigate != null) {
+      onNavigate!(sectionId);
     }
+    Navigator.pop(context);
   }
 
   @override
@@ -105,35 +92,62 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-
-          ListTile(
-            title: Text('Accueil', style: TextStyle(color: theme.colorScheme.onPrimary)),
-            onTap: () {
-              _scrollToSection(accueil);
-              Navigator.pop(context);
-            },
+          DrawerHeader(
+            decoration: BoxDecoration(color: theme.colorScheme.primary),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.menu, color: theme.colorScheme.onPrimary, size: 40),
+                const SizedBox(height: 10),
+                Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: theme.colorScheme.onPrimary,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
           ListTile(
-            title: Text('Mes réalisation', style: TextStyle(color: theme.colorScheme.onPrimary)),
-            onTap: () {
-              _scrollToSection(realisation);
-              Navigator.pop(context);
-            },
+            leading: Icon(Icons.home, color: theme.colorScheme.onPrimary),
+            title: Text(
+              'Accueil',
+              style: TextStyle(color: theme.colorScheme.onPrimary),
+            ),
+            onTap: () => _scrollToSection(context, 'accueil'),
           ),
+          const Divider(height: 1),
           ListTile(
-            title: Text('Avis clients', style: TextStyle(color: theme.colorScheme.onPrimary)),
-            onTap: () {
-              _scrollToSection(avisClients);
-              Navigator.pop(context);
-            },
+            leading: Icon(Icons.work, color: theme.colorScheme.onPrimary),
+            title: Text(
+              'Mes réalisations',
+              style: TextStyle(color: theme.colorScheme.onPrimary),
+            ),
+            onTap: () => _scrollToSection(context, 'realisation'),
           ),
-
+          const Divider(height: 1),
           ListTile(
-            title: Text('Contact', style: TextStyle(color: theme.colorScheme.onPrimary)),
-            onTap: () {
-              _scrollToSection(contact);
-              Navigator.pop(context);
-            },
+            leading: Icon(Icons.star, color: theme.colorScheme.onPrimary),
+            title: Text(
+              'Avis clients',
+              style: TextStyle(color: theme.colorScheme.onPrimary),
+            ),
+            onTap: () => _scrollToSection(context, 'avisClients'),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: Icon(
+              Icons.contact_mail,
+              color: theme.colorScheme.onPrimary,
+            ),
+            title: Text(
+              'Contact',
+              style: TextStyle(color: theme.colorScheme.onPrimary),
+            ),
+            onTap: () => _scrollToSection(context, 'contact'),
           ),
         ],
       ),

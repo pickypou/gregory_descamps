@@ -13,34 +13,17 @@ class Header extends StatelessWidget {
     // Pour les appareils mobiles
     if (size.width < 749) {
       return SizedBox(
-        height: size.height * 0.75, // Hauteur augmentée à 75% de l'écran
+        height: size.height * 0.5, // Hauteur ajustée pour mobile
         width: size.width,
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/chantiers/img_5.jpg'),
-              fit: BoxFit.cover,
+              image: AssetImage('assets/images/header.png'),
+              fit: BoxFit.contain, // Affiche l'image complète sans la couper
+              alignment: Alignment.center,
             ),
           ),
-          child: Stack(
-            children: [
-              // Logo (Centré)
-              Positioned(
-                left: 0,
-                right: 0,
-                top: size.height * 0.1,
-                child: Center(
-                  child: SizedBox(
-                    width: size.width * 0.8,
-                    child: Image.asset(
-                      'assets/images/logos/logo-transparent.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Pas de contenu supplémentaire pour mobile
         ),
       );
     } else {
@@ -54,26 +37,12 @@ class Header extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/chantiers/img_5.jpg'),
+              image: AssetImage('assets/images/header.png'),
               fit: BoxFit.cover,
             ),
           ),
           child: Stack(
             children: [
-              // Logo
-              Positioned(
-                right: size.width * 0.3,
-                top:
-                    headerHeight *
-                    0.1, // Positionnement relatif à la hauteur du header
-                child: SizedBox(
-                  width: size.width * 0.4,
-                  child: Image.asset(
-                    'assets/images/logos/logo-transparent.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
               // Carte de présentation de l'entreprise
               Positioned(
                 right: 0,

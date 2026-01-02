@@ -53,14 +53,7 @@ class ViewAll extends StatelessWidget {
         actions: [],
       ),
       drawer:
-          size.width < 749
-              ? CustomDrawer(
-                accueil: accueil,
-                realisation: realisation,
-                avisClients: avisClients,
-                contact: contact,
-              )
-              : null,
+          size.width < 749 ? CustomDrawer(onNavigate: _scrollToSection) : null,
       body: Stack(
         children: [
           Positioned.fill(
