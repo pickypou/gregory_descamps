@@ -16,7 +16,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Gregory DESCAMPS",
-      "image": "https://gregorydescamp.fr/image.jpg",
+      "image": "https://gregorydescamp.fr/image.png",
       "telephone": "+33 6 00 00 00 00",
       "email": "contact@gregorydescamp.fr",
       "address": {
@@ -44,7 +44,7 @@
   </script>
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="gregory_descamps">
+  <meta name="apple-mobile-web-app-title" content="Gregory DESCAMPS">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
   <meta name="description" content="Auto-entrepreneur avec 15 ans d'expérience en rénovation de bâtiments. Spécialisé en isolation, peinture, pose de parquet flottant et sol PVC. Devis gratuit !">
   <meta name="keywords" content="Gregory DESCAMPS, rénovation, bâtiment, isolation, peinture, parquet flottant, sol PVC, auto-entrepreneur, travaux, confort thermique, devis gratuit">
@@ -54,12 +54,12 @@
   <meta property="og:description" content="Expert en rénovation, isolation, peinture et pose de revêtements de sol. 15 ans d'expérience pour des travaux de qualité.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gregorydescamp.fr/">
-  <meta property="og:image" content="https://gregorydescamp.fr/image.jpg">
+  <meta property="og:image" content="https://gregorydescamp.fr/image.png">
   <!-- carte twiter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rénovation de bâtiments – Isolation, peinture, parquet, sol PVC">
   <meta name="twitter:description" content="Expert en rénovation, isolation, peinture et pose de revêtements de sol. 15 ans d'expérience pour des travaux de qualité.">
-  <meta name="twitter:image" content="https://gregorydescamp.fr/image.jpg">
+  <meta name="twitter:image" content="https://gregorydescamp.fr/image.png">
 
   <!-- Favicon -->
   <link  rel= "apple-touch-icon"  sizes= "57x57"  href= "/apple-icon-57x57.png" >
@@ -77,53 +77,16 @@
   <link  rel= "icon"  type= "image/png"  sizes= "16x16"  href= "/favicon-16x16.png" >
   <link  rel= "manifest"  href= "/manifest.json" >
   <link rel="canonical" href="https://gregorydescamp.fr/">
-  <meta  name= "msapplication-TileColor"  content= "#ffffff" >
+  <meta  name= "msapplication-TileColor"  content= "#13293D" >
   <meta  name= "msapplication-TileImage"  content= "/ms-icon-144x144.png" >
-  <meta  name= "theme-color"  content= "#ffffff" >
+  <meta  name= "theme-color"  content= "#13293D" >
 
   <title>Gregory DESCAMPS - Rénovation & Travaux Bâtiment | Isolation, Peinture, Sol</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
-  <script type="module">
-    // Import Firebase
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
-    // Configuration Firebase
-    const firebaseConfig = {
-      apiKey: 'AIzaSyCLayHC_KtyHdiWWbHXeY5Pe82swYc4dX8',
-    appId: '1:189608787196:web:84ca3e3bf70d014978eb79',
-    messagingSenderId: '189608787196',
-    projectId: 'gregory-descamps',
-    authDomain: 'gregory-descamps.firebaseapp.com',
-    storageBucket: 'gregory-descamps.firebasestorage.app',
-    };
-
-    // Initialiser Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-     async function getData() {
-   try {
-     const querySnapshot = await getDocs(collection(db, "avis_clients"));
-     if (querySnapshot.empty) {
-       console.log("Aucun avis trouvé.");
-     } else {
-       querySnapshot.forEach((doc) => {
-         console.log(doc.id, " => ", doc.data());
-       });
-     }
-   } catch (error) {
-     console.error("Erreur de récupération des avis:", error);
-   }
- }
-
- getData();
-
- getData();
-  </script>
 
 </body>
 </html>

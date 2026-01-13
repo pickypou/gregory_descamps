@@ -113,6 +113,5 @@ class UsersRepositoryImpl implements UsersRepository {
     }
   }
 
-  // TODO: implement firestore
   FirebaseFirestore get firestore => throw UnimplementedError();
 }
